@@ -41,9 +41,9 @@ class App(Tkinter.Tk): # Main Class
         self.h = Tkinter.IntVar()
         
         # Variable placeholders for all output
-        self.attack_output = Tkinter.IntVar()
-        self.defense_output = Tkinter.IntVar()
-        self.att_def_remain = Tkinter.IntVar()
+        self.attack_output    = Tkinter.IntVar()
+        self.defense_output   = Tkinter.IntVar()
+        self.att_def_remain   = Tkinter.IntVar()
         self.defe_defe_remain = Tkinter.IntVar()        
         
         self.entry_attdmg = Tkinter.Entry(self, textvariable=self.a) # Attacking Fleets Damage Input
@@ -75,19 +75,19 @@ class App(Tkinter.Tk): # Main Class
         self.button_battle.grid(row=10, column=0, sticky='E')
         
         # Labels for the outputs
-        self.label_output1 = Tkinter.Label(self, textvariable=self.attack_output).grid(row=11, column=1, sticky='W')
-        self.label_output2 = Tkinter.Label(self, textvariable=self.defense_output).grid(row=12, column=1, sticky='W')   
-        self.label_output3 = Tkinter.Label(self, textvariable=self.att_def_remain).grid(row=13, column=1, sticky='W')
-        self.label_output4 = Tkinter.Label(self, textvariable=self.defe_defe_remain).grid(row=14, column=1, sticky='W')        
+        self.attack_output_label    = Tkinter.Label(self, textvariable=self.attack_output).grid(row=11, column=1, sticky='W')
+        self.defense_output_label   = Tkinter.Label(self, textvariable=self.defense_output).grid(row=12, column=1, sticky='W')   
+        self.att_def_remain_label   = Tkinter.Label(self, textvariable=self.att_def_remain).grid(row=13, column=1, sticky='W')
+        self.defe_defe_remain_label = Tkinter.Label(self, textvariable=self.defe_defe_remain).grid(row=14, column=1, sticky='W')        
     
     def battle(self): # Custom battle equation for simulation
-        self.sup_rand = random.randrange(1, 3, 1)
-        self.tac_rand = random.randrange(1, 5, 1)
+        sup_rand = random.randrange(1, 3, 1)
+        tac_rand = random.randrange(1, 5, 1)
         
-        self.attack_output = self.a.get() + (self.sup_rand * self.c.get()) + (self.tac_rand * self.d.get())
-        self.defense_output = self.e.get() + (self.sup_rand * self.g.get()) + (self.tac_rand * self.h.get())
-        self.att_def_remain = self.b.get() - self.defense_output
-        self.defe_defe_remain = self.f.get() - self.attack_output        
+        self.attack_output.set(self.a.get() + (sup_rand * self.c.get()) + (tac_rand * self.d.get()))
+        self.defense_output.set(self.e.get() + (sup_rand * self.g.get()) + (tac_rand * self.h.get()))
+        self.att_def_remain.set(self.b.get() - self.defense_output.get())
+        self.defe_defe_remain.set(self.f.get() - self.attack_output.get())
 
 if __name__ == "__main__": # Sets title and geometry for GUI and loops
     app = App(None)
